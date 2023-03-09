@@ -4,6 +4,11 @@ const morgan = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const dotenv = require("dotenv");
+
+const passport = require('passport');
+const passportConfig = require('./passport')
+passportConfig();
+
 const cors = require("cors");
 
 dotenv.config();
@@ -21,7 +26,7 @@ app.use(
   })
 );
 
-const reloadDB = true;
+const reloadDB = false;
 
 sequelize
   .sync({ force: reloadDB })
@@ -51,6 +56,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", pageRouter);
 

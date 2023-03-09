@@ -5,7 +5,7 @@ const issueRouter = require('./issue')
 const router = express.Router();
 
 router.use((req, res, next) => {
-  res.locals.user = null;
+  res.locals.user = req.user;
   next();
 });
 

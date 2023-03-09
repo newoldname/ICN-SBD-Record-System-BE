@@ -4,10 +4,6 @@ class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        name: {
-          type: Sequelize.STRING(30),
-          allowNull: false,
-        },
         email: {
           type: Sequelize.STRING(20),
           allowNull: false,
@@ -19,15 +15,15 @@ class User extends Sequelize.Model {
         },
         workDay: {
           type: Sequelize.STRING(7),
-          allowNull: false,
+          allowNull: true,
         },
         workStartHour: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         workEndHour: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         isChecked: {
           type: Sequelize.BOOLEAN,

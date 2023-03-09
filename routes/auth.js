@@ -1,17 +1,20 @@
 const express = require('express');
 const passport = require('passport');
 
-// const { isLoggedIn, isNotLoggedIn } = require('../middlewares');
-// const { checkEmail, join, login, logout } = require('../services/auth/auth.js');
+const { isLoggedIn, isNotLoggedIn } = require('../middlewares');
+const { join, login, logout } = require('../services/auth');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {res.send("hi, im auth")});
+// POST /auth/join
+router.post('/join', isNotLoggedIn, join); 
 
-// router.post('/join', isNotLoggedIn, join); 
+// POST /auth/login
+router.post('/login', isNotLoggedIn, login);
 
-// router.post('/login', isNotLoggedIn, login);
+// GET /auth/logout
+router.get('/logout', isLoggedIn, logout);
 
-// router.get('/logout', isLoggedIn, logout);
+router.get('/mypage', isLoggedIn, (req, res, next) => {res.send(res.locals.user.name)})
 
 module.exports = router;
